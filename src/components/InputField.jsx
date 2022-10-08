@@ -8,13 +8,14 @@ const handleInput=(index,e)=>{
        setValue(values)
       
 }
+
     
   return (
     <input 
     onChange={(e)=>handleInput(index,e)}
     type={'text'}
     name={'input'}
-    value={inputValue.inputValue}
+    value={inputValue.input}
     autoFocus
     />
   )

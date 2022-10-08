@@ -4,25 +4,49 @@ import './styles/matrix.css'
 
 import Draggable from 'react-draggable'; 
 
-const MatrixDisplay = ({inputValue,setValue}) => {
+const MatrixDisplay = ({inputValue,setValue,setColumn,setRaw,row,column,}) => {
+ 
+  const handleColumnInput =(e)=>{
+    setColumn(parseInt(e.target.value))
+    setValue([...inputValue,{inputVa:''}])
+    
+  }
+
+  const handleRowInput =(e)=>{
+    setRaw(parseInt(e.target.value))
+    setValue([...inputValue,{inputVa:''}])
+    
+  }
+
+ 
+
  
 
   return (
-    <Draggable>
+<Draggable>
 <div className="big-container">
  <div className="matrix-size-input">
-    <input type="number" name="row" id="row" placeholder='row'/>
-    <input type="number" name="col" id="col" placeholder='column'/>
+    <input 
+    onChange={handleRowInput} 
+    type="number" 
+    value={row} 
+    placeholder='row'
+    />
+    <input 
+    onChange={handleColumnInput} 
+    type="number"
+    value={column} 
+    placeholder='column'
+    />
 </div>   
 <div className="hr"/>
 <div className='matrix-display-container'>
   {
-  inputValue.map((index)=>(
+  inputValue.map((item,index)=>(
     <InputField
     inputValue={inputValue}
     index={index}
     setValue={setValue}
- 
     />
 ))}
 
