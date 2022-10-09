@@ -26,7 +26,7 @@ const createDummyMatrix=()=>{
 
 // converting 4x4 matrix to 3x3
 
-let newArray2=[[2,3,4,5],[1,5,6,7],[9,7,0,1],[3,2,0,1]]
+let newArray2=[[2,3,4,5,1],[1,5,6,7,0],[9,7,0,1,8],[3,2,0,1,9],[3,2,0,1,6]]
 let arra1=[]
 let arra2=[]
 let arra3=[]
@@ -40,7 +40,7 @@ for(let i=0;i<newArray2.length;i++){
  for(let j=0;j<newArray2.length;j++){
      
   if(i=== 0 && j=== 0){
-    let alpha=newArray2[i][j]
+    let alpha = newArray2[i][j]
      arra1.push(
       [(alpha*newArray2[i+1][j+1]),(alpha*newArray2[i+1][j+2]),(alpha*newArray2[i+1][j+3])],
       [(alpha*newArray2[i+2][j+1]),(alpha*newArray2[i+2][j+2]),(alpha*newArray2[i+2][j+3])],
@@ -69,7 +69,7 @@ for(let i=0;i<newArray2.length;i++){
   }
 
   if(i=== 0 && j === 3){
-     let alpha=newArray2[i][j]
+     let alpha = newArray2[i][j]
      arra4.push(
       [(alpha*newArray2[i+1][j-3]),(alpha*newArray2[i+1][j-2]),(alpha*newArray2[i+1][j-1])],
       [(alpha*newArray2[i+2][j-3]),(alpha*newArray2[i+2][j-2]),(alpha*newArray2[i+2][j-1])],
@@ -93,10 +93,45 @@ dummyArray=arra1
 // console.log('new dummyArray Value is: ',dummyArray)
 
 
+let matrix=[]
+let matrix2=[]
+let combianArray=[]
+let combianArray2=[]
+
+ const genericMatrixCreator=(inputMatrix)=>{
+       console.log((inputMatrix.length));
+    const square=(inputMatrix.length-1)
+     for(let i=0;i<inputMatrix.length-1;i++){
+      for(let j=0;j<inputMatrix.length-1;j++){
+       
+          if(i=== 0 && j===0 ){
+            for(let t=1;t<inputMatrix.length;t++){
+                for(let k=1;k<inputMatrix.length;k++){
+                   matrix.push(inputMatrix[t][k])
+                }
+            }
+          }if(i === 0 && j!==0){
+            console.log('hi');
+            for(let t=1;t<inputMatrix.length;t++){
+                for(let k=0;k<inputMatrix.length;k++){
+                   matrix2.push(inputMatrix[t][k])
+                }
+            }
+          }
+             
+        }
+        
+         combianArray.push([matrix.splice(0,square)])
+         console.log('new matrix',combianArray);
+         combianArray2.push([matrix2.splice(0,square+1)])
+         console.log('new matrix',combianArray2);
+     }
+     
+
+ }
 
 
-
-
+ genericMatrixCreator(newArray2)
 //creating 2x2 matrix from 3x3 matrix
 
 let newArray =[[2,0,1],[3,5,3],[4,7,8]]                 
@@ -141,7 +176,7 @@ console.log(array3);
 
 }
 
-// converting3x3MatrixTo2x2()
+converting3x3MatrixTo2x2(combianArray)
 
 
 
@@ -177,6 +212,16 @@ const inverseOfMatrix=(inputMatrix)=>{
 
 // inverseOfMatrix(arra1)
 
+
+//  const isPalinDrome=(inputText)=>{
+//   let reverseWord=''
+//   let textArray= inputText.split('')
+//   for(let i=textArray.length-1;i>=0;i--) reverseWord+=textArray[i]
+//   if(inputText===reverseWord){
+//   console.log(`${inputText} is Palindrome`);
+//  }else console.log(`${inputText} isn't Palindrome`);
+// }
+// isPalinDrome('mom')
 
 const getProductOfMatrix=(m1,m2)=>{
      
