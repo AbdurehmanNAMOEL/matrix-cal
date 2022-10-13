@@ -9,13 +9,9 @@ function App() {
 const [row,setRaw]=useState(0)
 const [column,setColumn]=useState(0)
 const [inputValue,setValue]= useState([])
-                                                                                                                                      
-
 
 const handleTestEvent=(e)=>{
-     
-  console.log(e.target.offsetTop);
-
+     console.log(e.target.offsetTop);
 }
 
 const createDummyMatrix=()=>{
@@ -23,184 +19,78 @@ const createDummyMatrix=()=>{
   console.log(dummyArray);
 }
 
-
 // converting 4x4 matrix to 3x3
 
-let newArray2=[[2,3,4,5,1],[1,5,6,7,0],[9,7,0,1,8],[3,2,0,1,9],[3,2,0,1,6]]
-let arra1=[]
-let arra2=[]
-let arra3=[]
-let arra4=[]
-
-console.log(row,column)
-
-const converting4x4MatrixTo3x3=()=>{
-  
-for(let i=0;i<newArray2.length;i++){
- for(let j=0;j<newArray2.length;j++){
-     
-  if(i=== 0 && j=== 0){
-    let alpha = newArray2[i][j]
-     arra1.push(
-      [(alpha*newArray2[i+1][j+1]),(alpha*newArray2[i+1][j+2]),(alpha*newArray2[i+1][j+3])],
-      [(alpha*newArray2[i+2][j+1]),(alpha*newArray2[i+2][j+2]),(alpha*newArray2[i+2][j+3])],
-      [(alpha*newArray2[i+3][j+1]),(alpha*newArray2[i+3][j+2]),(alpha*newArray2[i+3][j+3])]
-      )
-   
-  }
-
-   if(i=== 0 && j === 1){
-    let alpha=newArray2[i][j]
-     arra2.push(
-      [(alpha*newArray2[i+1][j-1]),(alpha*newArray2[i+1][j+1]),(alpha*newArray2[i+1][j+2])],
-      [(alpha*newArray2[i+2][j-1]),(alpha*newArray2[i+2][j+1]),(alpha*newArray2[i+2][j+2])],
-      [(alpha*newArray2[i+3][j-1]),(alpha*newArray2[i+3][j+1]),(alpha*newArray2[i+3][j+2])]
-      )
-  }
-
-  if(i=== 0 && j === 2){
-     let alpha = newArray2[i][j]
-     arra3.push(
-     [(alpha*newArray2[i+1][j-2]),(alpha*newArray2[i+1][j-1]),(alpha*newArray2[i+1][j+1])],
-     [(alpha*newArray2[i+2][j-2]),(alpha*newArray2[i+2][j-1]),(alpha*newArray2[i+2][j+1])],
-     [(alpha*newArray2[i+3][j-2]),(alpha*newArray2[i+3][j-1]),(alpha*newArray2[i+3][j+1])]
-      )
-    
-  }
-
-  if(i=== 0 && j === 3){
-     let alpha = newArray2[i][j]
-     arra4.push(
-      [(alpha*newArray2[i+1][j-3]),(alpha*newArray2[i+1][j-2]),(alpha*newArray2[i+1][j-1])],
-      [(alpha*newArray2[i+2][j-3]),(alpha*newArray2[i+2][j-2]),(alpha*newArray2[i+2][j-1])],
-      [(alpha*newArray2[i+3][j-3]),(alpha*newArray2[i+3][j-2]),(alpha*newArray2[i+3][j-1])]
-      )
-     
-  }
-}  
-
-}
-
-
-console.log(arra1,'1');
-console.log(arra2,'2');
-console.log(arra3,'3');
-console.log(arra4,'4');
-dummyArray=arra1
-}
-
-// converting4x4MatrixTo3x3()
-// console.log('new dummyArray Value is: ',dummyArray)
-
+let newArray2=
+[
+ [2,3,4,5,8,1],
+ [1,5,6,7,0,1],
+ [9,7,0,1,5,1],
+ [3,2,0,1,4,12],
+ [3,2,0,1,2,11],
+ [3,2,0,1,2,20]
+]
 
 let matrix=[]
-let matrix2=[]
-let combianArray=[]
+let subMatrix=[]
 let combianArray2=[]
+ 
+// calculating the determinant
 
  const genericMatrixCreator=(inputMatrix)=>{
-       console.log((inputMatrix.length));
-    const square=(inputMatrix.length-1)
-     for(let i=0;i<inputMatrix.length-1;i++){
-      for(let j=0;j<inputMatrix.length-1;j++){
-       
-          if(i=== 0 && j===0 ){
-            for(let t=1;t<inputMatrix.length;t++){
-                for(let k=1;k<inputMatrix.length;k++){
-                   matrix.push(inputMatrix[t][k])
-                }
-            }
-          }if(i === 0 && j!==0){
-            console.log('hi');
-            for(let t=1;t<inputMatrix.length;t++){
-                for(let k=0;k<inputMatrix.length;k++){
-                   matrix2.push(inputMatrix[t][k])
-                }
-            }
-          }
-             
-        }
-        
-         combianArray.push([matrix.splice(0,square)])
-         console.log('new matrix',combianArray);
-         combianArray2.push([matrix2.splice(0,square+1)])
-         console.log('new matrix',combianArray2);
-     }
-     
+     return (inputMatrix[0][0]*inputMatrix[1][1])-(inputMatrix[0][1]*inputMatrix[1][0])
+}
 
- }
+// getting the subMatrix from the big matrix
 
-
- genericMatrixCreator(newArray2)
-//creating 2x2 matrix from 3x3 matrix
-
-let newArray =[[2,0,1],[3,5,3],[4,7,8]]                 
-let array1=[]
-let array2=[]
-let array3=[]
-
-const converting3x3MatrixTo2x2=()=>{
-
-for(let i=0;i<newArray.length;i++){
- for(let j=0;j<newArray.length;j++){
-     
-  if(i=== 0 && j=== 0){
-     array1.push(
-      ([(newArray[i][j]*newArray[i+1][j+1]),(newArray[i][j]*newArray[i+1][j+2])]),
-      [(newArray[i][j]*newArray[i+2][j+1]),(newArray[i][j]*newArray[i+2][j+2])]
-      )
+ const getSubMatrix=(inputMatrix)=>{
+  if(inputMatrix.length===2){
+    genericMatrixCreator(inputMatrix)
+  }else if(inputMatrix.length>2){
+    subMatrix2(inputMatrix)
+  } 
+  if(subMatrix.length>2){
+    inputMatrix=subMatrix
+    subMatrix=[]
+    getSubMatrix(inputMatrix)
   }
-
-   if(i=== 0 && j === 1){
    
-     array2.push(
-      ([(newArray[i][j]*newArray[i+1][j]),(newArray[i][j]*newArray[i+1][j+1])]),
-      [(newArray[i][j]*newArray[i+2][j]),(newArray[i][j]*newArray[i+2][j+1])]
-      )
-  }
-
-  if(i=== 0 && j === 2){
-     
-     array3.push(
-      ([(newArray[i][j]*newArray[i+1][j-2]),(newArray[i][j]*newArray[i+1][j-1])]),
-      [(newArray[i][j]*newArray[i+2][j-2]),(newArray[i][j]*newArray[i+2][j-1])]
-      )
-  }
-}  
-
 }
 
-console.log(array1);
-console.log(array2);
-console.log(array3);
-
+const subMatrix2=(matrixInput)=>{
+   for(let i=1;i<matrixInput.length;i++){
+        for(let j=1;j<matrixInput.length;j++){
+           matrix.push(matrixInput[i][j])
+        }
+  subMatrix.push(matrix.splice(0,matrixInput.length))
+  }
+   console.log('submatrix',subMatrix,'length',subMatrix.length);
+   if(subMatrix.length===2){
+    console.log(`The Determinant is |A|= ${genericMatrixCreator(subMatrix)}`);
+   }
+   matrix=[]
 }
 
-converting3x3MatrixTo2x2(combianArray)
+getSubMatrix(newArray2)
 
+const arrayNew=[]
 
+const newArrayList =(inputMatrix)=>{        
+  for(let i=0;i<inputMatrix.length;i++){
+    if(i%2!==0){
+      for(let j=0;j<inputMatrix.length-1;j++){
+        arrayNew.push(inputMatrix[i][j])
+      }
+    }
+  }
+  console.log('hi',arrayNew);
+}
+
+ newArrayList(combianArray2)
 
 // determinant
-  let array =[[2,4],[6,7]]
-let arrayValue=0
- 
-const handle2x2Determinant=(arrayInput)=>{
-   
-for(let i=0;i<arrayInput.length-1;i++){
- for(let j=0;j<arrayInput.length-1;j++){
-       
-  arrayValue=(arrayInput[i][j]*arrayInput[i+1][j+1])-(arrayInput[i][j+1]*arrayInput[i+1][j])
-}  
 
-}
-console.log(arrayValue);
-}
-
-// handle2x2Determinant(array1)
-// handle2x2Determinant(array2)
-// handle2x2Determinant(array3)
-
-const inverseOfMatrix=(inputMatrix)=>{
+const transposeOfMatrix=(inputMatrix)=>{
   for(let i= 0;i<inputMatrix.length;i++){
     for(let j= 0;j<inputMatrix.length;j++){
       inputMatrix[i][j]=inputMatrix[j][i]
@@ -209,19 +99,6 @@ const inverseOfMatrix=(inputMatrix)=>{
 
   console.log(inputMatrix);
 }
-
-// inverseOfMatrix(arra1)
-
-
-//  const isPalinDrome=(inputText)=>{
-//   let reverseWord=''
-//   let textArray= inputText.split('')
-//   for(let i=textArray.length-1;i>=0;i--) reverseWord+=textArray[i]
-//   if(inputText===reverseWord){
-//   console.log(`${inputText} is Palindrome`);
-//  }else console.log(`${inputText} isn't Palindrome`);
-// }
-// isPalinDrome('mom')
 
 const getProductOfMatrix=(m1,m2)=>{
      
@@ -236,24 +113,9 @@ const getProductOfMatrix=(m1,m2)=>{
     }
     console.log('product',dummyArray);
 }
-  createDummyMatrix(row,column)
-// getProductOfMatrix(arra1,arra2)
-const handleMatrixInput=()=>{
-   let newArray = inputValue.map(item=>item.input)
-   console.log(newArray[0]);
-  if(row === column){
 
-    for(let i=0;i<row;i++){
-      for(let j=0;j<column;j++){
-      
-        dummyArray[i][j]= newArray[i]
-    }  
-  
-    }
-  }else console.log('it is not square matrix');
-  
-}
-handleMatrixInput()
+createDummyMatrix(row,column)
+
 useEffect(()=>{
 
 },[row,column])
@@ -267,11 +129,7 @@ useEffect(()=>{
      setRaw={setRaw}
      row={row}
      column={column}
-     
      />
-
-      
-
       {/* for testing purpose */}
       <Draggable>
       <div onMouseEnter={handleTestEvent} className="elastic-div"></div>
